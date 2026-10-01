@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}Productos{% endblock %}
+{% block content %}
+<section class="container section">
+  <p class="eyebrow">Catálogo</p>
+  <h1>Productos</h1>
+  <p class="lead">Soluciones disponibles en el catálogo demostrativo de Seguridad LTDA.</p>
+  <div class="category-list" aria-label="Categorías disponibles">
+    <strong>Categorías:</strong>
+    {% for category in categories %}<span>{{ category }}</span>{% endfor %}
+  </div>
+  <p class="results">{{ products|length }} productos</p>
+  <div class="product-grid">
+    {% for product in products %}{% include "_product_card.html" %}{% endfor %}
+  </div>
+</section>
+{% endblock %}
+

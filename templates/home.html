@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block title %}Inicio{% endblock %}
+{% block content %}
+<section class="hero">
+  <div class="container">
+    <p class="eyebrow">Seguridad LTDA</p>
+    <h1>Portal del Cliente</h1>
+    <p class="lead">Consulta productos, disponibilidad y el estado de tus pedidos desde un solo lugar.</p>
+    <form class="home-search" action="{{ url_for('products') }}" method="get">
+      <label for="home-query">Buscar en el catálogo</label>
+      <div>
+        <input id="home-query" name="q" type="search" disabled placeholder="Disponible en la próxima fase">
+        <button disabled>Buscar</button>
+      </div>
+    </form>
+    <a class="button" href="{{ url_for('products') }}">Consultar catálogo</a>
+  </div>
+</section>
+<section class="container section" aria-labelledby="featured-title">
+  <div class="section-heading">
+    <div><p class="eyebrow">Selección</p><h2 id="featured-title">Productos destacados</h2></div>
+    <a href="{{ url_for('products') }}">Ver catálogo completo</a>
+  </div>
+  <div class="product-grid">
+    {% for product in products %}{% include "_product_card.html" %}{% endfor %}
+  </div>
+</section>
+{% endblock %}
+

@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block title %}{{ product.name }}{% endblock %}
+{% block content %}
+<article class="container section">
+  <a class="back-link" href="{{ url_for('products') }}">← Volver al catálogo</a>
+  <div class="detail-summary">
+    <div class="gallery">
+      {% for image in product.images %}
+        <img src="{{ url_for('static', filename=image.path) }}" alt="{{ image.alt }}">
+      {% endfor %}
+    </div>
+    <div>
+      <p class="code">{{ product.code }}</p>
+      <h1>{{ product.name }}</h1>
+      <dl class="facts">
+        <div><dt>Marca</dt><dd>{{ product.brand }}</dd></div>
+        <div><dt>Categoría</dt><dd>{{ product.category }}</dd></div>
+      </dl>
+      <p class="price price--large">{{ product.price|clp }}</p>
+      <span class="badge badge--{{ 'available' if product.availability == 'Disponible' else 'limited' if product.availability == 'Stock limitado' else 'empty' }}">{{ product.availability }}</span>
+      <p class="prototype-note">Stock demostrativo: {{ product.stock }} unidades.</p>
+    </div>
+  </div>
+  <section class="detail-section"><h2>Descripción</h2><p>{{ product.description }}</p></section>
+  <section class="detail-section"><h2>Características</h2><ul>{% for feature in product.features %}<li>{{ feature }}</li>{% endfor %}</ul></section>
+  {% if product.multimedia %}
+    <section class="detail-section"><h2>Contenido multimedia</h2>{% for item in product.multimedia %}<div class="media-panel"><h3>{{ item.title }}</h3><p>{{ item.content }}</p></div>{% endfor %}</section>
+  {% endif %}
+  {% if product.documents %}
+    <section class="detail-section"><h2>Documentos</h2>{% for document in product.documents %}<a class="resource" href="{{ url_for('static', filename=document.path) }}" download>{{ document.name }}</a>{% endfor %}</section>
+  {% endif %}
+  {% if product.related_links %}
+    <section class="detail-section"><h2>Productos relacionados</h2>{% for link in product.related_links %}<a class="resource" href="{{ url_for('product_detail', product_id=link.product_id) }}">{{ link.label }}</a>{% endfor %}</section>
+  {% endif %}
+</article>
+{% endblock %}
+

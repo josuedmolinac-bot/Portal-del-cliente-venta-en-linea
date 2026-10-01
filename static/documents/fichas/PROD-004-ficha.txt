@@ -1,0 +1,6 @@
+SEGURIDAD LTDA - FICHA DEMOSTRATIVA
+Producto: NVR-8 Pro
+
+Grabador de red demostrativo para ocho canales.
+
+Documento creado exclusivamente para el prototipo académico. No sustituye documentación técnica certificada.
