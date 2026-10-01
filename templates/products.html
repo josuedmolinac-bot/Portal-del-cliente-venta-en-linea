@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block title %}Productos{% endblock %}
+{% block content %}
+<section class="container section">
+  <p class="eyebrow">Catálogo</p>
+  <h1>Productos</h1>
+  <p class="lead">Consulta y filtra el catálogo demostrativo de Seguridad LTDA.</p>
+  <p class="prototype-note">La disponibilidad mostrada se calcula desde stock simulado y no representa inventario en tiempo real.</p>
+
+  <form class="catalog-filters" method="get" action="{{ url_for('products') }}">
+    <div class="search-field">
+      <label for="query">Buscar por nombre, código o palabra clave</label>
+      <input id="query" name="q" type="search" list="product-suggestions" maxlength="100" value="{{ filters.q }}" placeholder="Ejemplo: PROD-001 o alarma">
+      <datalist id="product-suggestions">{% for suggestion in suggestions %}<option value="{{ suggestion }}">{% endfor %}</datalist>
+    </div>
+    <div>
+      <label for="category">Categoría</label>
+      <select id="category" name="category"><option value="">Todas</option>{% for category in categories %}<option value="{{ category }}" {% if filters.category == category %}selected{% endif %}>{{ category }}</option>{% endfor %}</select>
+    </div>
+    <div>
+      <label for="brand">Marca</label>
+      <select id="brand" name="brand"><option value="">Todas</option>{% for brand in brands %}<option value="{{ brand }}" {% if filters.brand == brand %}selected{% endif %}>{{ brand }}</option>{% endfor %}</select>
+    </div>
+    <div>
+      <label for="availability">Disponibilidad</label>
+      <select id="availability" name="availability"><option value="">Todas</option>{% for option in availability_options %}<option value="{{ option }}" {% if filters.availability == option %}selected{% endif %}>{{ option }}</option>{% endfor %}</select>
+    </div>
+    <div>
+      <label for="min-price">Precio mínimo</label>
+      <input id="min-price" name="min_price" type="number" min="0" step="1" value="{{ filters.min_price if filters.min_price is not none else '' }}">
+    </div>
+    <div>
+      <label for="max-price">Precio máximo</label>
+      <input id="max-price" name="max_price" type="number" min="0" step="1" value="{{ filters.max_price if filters.max_price is not none else '' }}">
+    </div>
+    <div class="filter-actions">
+      <button class="button" type="submit">Aplicar búsqueda</button>
+      <a class="button button--secondary" href="{{ url_for('products') }}">Limpiar filtros</a>
+    </div>
+  </form>
+
+  {% if error %}<div class="alert alert--error" role="alert">{{ error }}</div>{% endif %}
+  <p class="results" aria-live="polite">{{ products|length }} {{ "producto" if products|length == 1 else "productos" }}</p>
+  {% if products %}
+    <div class="product-grid">{% for product in products %}{% include "_product_card.html" %}{% endfor %}</div>
+  {% else %}
+    <div class="empty-state"><h2>Sin resultados</h2><p>No encontramos productos que coincidan con tu búsqueda.</p><a class="button" href="{{ url_for('products') }}">Limpiar filtros</a></div>
+  {% endif %}
+</section>
+{% endblock %}

@@ -1,20 +1,11 @@
-# Dependencias
-node_modules/
-
-# Compilación
-dist/
-
-# Variables de entorno locales
+.venv/
+venv/
+__pycache__/
+*.pyc
+db.sqlite3
 .env
 .env.*
-!.env.example
+.pytest_cache/
+.coverage
+htmlcov/
 
-# Registros
-*.log
-npm-debug.log*
-
-# Editores y sistema operativo
-.vscode/
-.idea/
-.DS_Store
-Thumbs.db

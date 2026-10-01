@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block title %}Mis pedidos{% endblock %}
+{% block content %}
+<section class="container section">
+  <p class="eyebrow">Cuenta demo</p><h1>Mis pedidos</h1>
+  <p class="prototype-note">Los pedidos se almacenan temporalmente para fines de demostración y no representan persistencia productiva.</p>
+  <div class="table-wrap"><table><thead><tr><th>Número</th><th>Fecha</th><th>Total</th><th>Estado</th><th></th></tr></thead><tbody>{% for order in orders %}<tr><td>{{ order.id }}</td><td>{{ order.date }}</td><td>{{ order.total|clp }}</td><td><span class="order-status">{{ order.status }}</span></td><td><a href="{{ url_for('order_detail', order_id=order.id) }}">Ver seguimiento</a></td></tr>{% endfor %}</tbody></table></div>
+</section>
+{% endblock %}

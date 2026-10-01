@@ -1,0 +1,13 @@
+<article class="product-card">
+  <img src="{{ url_for('static', filename=product.images[0].path) }}" alt="{{ product.images[0].alt }}">
+  <div class="card-body">
+    <p class="code">{{ product.code }}</p>
+    <h2>{{ product.name }}</h2>
+    <p class="meta">{{ product.category }} · {{ product.brand }}</p>
+    <p class="price">{{ product.price|clp }}</p>
+    <span class="badge badge--{{ 'available' if product.availability == 'Disponible' else 'limited' if product.availability == 'Stock limitado' else 'empty' }}">{{ product.availability }}</span>
+    <span class="sr-only">Stock simulado: {{ product.stock }} unidades.</span>
+    <a class="button button--secondary" href="{{ url_for('product_detail', product_id=product.id) }}">Ver detalle</a>
+  </div>
+</article>
+

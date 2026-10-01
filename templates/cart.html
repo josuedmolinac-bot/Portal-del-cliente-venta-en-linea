@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}Carrito{% endblock %}
+{% block content %}
+<section class="container section">
+  <p class="eyebrow">Pedido demostrativo</p><h1>Carrito</h1>
+  {% if items %}
+    <div class="table-wrap"><table><thead><tr><th>Producto</th><th>Precio</th><th>Cantidad</th><th>Subtotal</th><th>Acción</th></tr></thead><tbody>
+    {% for item in items %}<tr><td><a href="{{ url_for('product_detail', product_id=item.product.id) }}">{{ item.product.name }}</a><small>{{ item.product.code }} · {{ item.product.availability }}</small></td><td>{{ item.product.price|clp }}</td><td><form class="inline-form" action="{{ url_for('update_cart', product_id=item.product.id) }}" method="post"><input type="hidden" name="csrf_token" value="{{ csrf_token() }}"><label class="sr-only" for="quantity-{{ item.product.id }}">Cantidad</label><input id="quantity-{{ item.product.id }}" name="quantity" type="number" min="1" max="{{ item.product.stock }}" value="{{ item.quantity }}" required><button type="submit">Actualizar</button></form></td><td>{{ item.subtotal|clp }}</td><td><form action="{{ url_for('remove_from_cart', product_id=item.product.id) }}" method="post"><input type="hidden" name="csrf_token" value="{{ csrf_token() }}"><button class="link-button" type="submit">Eliminar</button></form></td></tr>{% endfor %}
+    </tbody></table></div>
+    <div class="cart-total"><span>Total</span><strong>{{ total|clp }}</strong></div>
+    <form class="confirm-form" action="{{ url_for('confirm_order') }}" method="post"><input type="hidden" name="csrf_token" value="{{ csrf_token() }}"><button class="button" type="submit">Confirmar pedido</button></form>
+  {% else %}
+    <div class="empty-state"><h2>Tu carrito está vacío</h2><p>Agrega productos disponibles desde el catálogo.</p><a class="button" href="{{ url_for('products') }}">Ver productos</a></div>
+  {% endif %}
+</section>
+{% endblock %}

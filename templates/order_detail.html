@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block title %}Pedido {{ order.id }}{% endblock %}
+{% block content %}
+<section class="container section">
+  <a class="back-link" href="{{ url_for('orders') }}">← Volver a mis pedidos</a>
+  <p class="eyebrow">Seguimiento demostrativo</p><h1>Pedido {{ order.id }}</h1>
+  <p>Fecha: {{ order.date }} · Estado actual: <strong>{{ order.status }}</strong></p>
+  <ol class="tracking">{% for state in order_states %}<li class="{{ 'completed' if loop.index0 <= order.state_index else '' }}" {% if loop.index0 == order.state_index %}aria-current="step"{% endif %}>{{ state }}</li>{% endfor %}</ol>
+  <div class="table-wrap"><table><thead><tr><th>Producto</th><th>Cantidad</th><th>Subtotal</th></tr></thead><tbody>{% for item in order["items"] %}<tr><td>{{ item.product.name }}<small>{{ item.product.code }}</small></td><td>{{ item.quantity }}</td><td>{{ item.subtotal|clp }}</td></tr>{% endfor %}</tbody></table></div>
+  <div class="cart-total"><span>Total</span><strong>{{ order.total|clp }}</strong></div>
+  <p class="prototype-note">Seguimiento simulado para fines académicos.</p>
+</section>
+{% endblock %}
