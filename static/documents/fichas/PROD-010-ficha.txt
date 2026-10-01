@@ -1,0 +1,6 @@
+SEGURIDAD LTDA - FICHA DEMOSTRATIVA
+Producto: Fuente FR-5A
+
+Fuente regulada de 12 V y 5 A.
+
+Documento creado exclusivamente para el prototipo académico. No sustituye documentación técnica certificada.
