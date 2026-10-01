@@ -1,5 +1,15 @@
+import re
+
+
+ORDER_ID_PATTERN = re.compile(r"^PED-(?:DEMO-\d{3}|\d{8}-[A-F0-9]{6})$")
+
+
 def is_positive_integer(value):
     return isinstance(value, int) and not isinstance(value, bool) and value > 0
+
+
+def is_valid_order_id(value):
+    return isinstance(value, str) and ORDER_ID_PATTERN.fullmatch(value) is not None
 
 
 MAX_SEARCH_LENGTH = 100

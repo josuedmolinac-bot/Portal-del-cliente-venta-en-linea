@@ -36,7 +36,11 @@ from services.order_service import (
     validate_quantity,
 )
 from utils.security import login_required
-from utils.validators import AVAILABILITY_OPTIONS, FilterValidationError
+from utils.validators import (
+    AVAILABILITY_OPTIONS,
+    FilterValidationError,
+    is_valid_order_id,
+)
 
 csrf = CSRFProtect()
 
@@ -47,6 +51,8 @@ def create_app(test_config=None):
         SESSION_COOKIE_HTTPONLY=True,
         SESSION_COOKIE_SAMESITE="Lax",
         SESSION_COOKIE_SECURE=os.environ.get("FLASK_HTTPS_ONLY") == "1",
+        SESSION_COOKIE_NAME="pdcvel_session",
+        MAX_CONTENT_LENGTH=16 * 1024,
     )
     if test_config:
         app.config.update(test_config)
@@ -131,10 +137,11 @@ def create_app(test_config=None):
         if request.method == "POST":
             email = " ".join(request.form.get("email", "").split()).casefold()
             password = request.form.get("password", "")
-            if (
-                email == DEMO_USER["email"].casefold()
-                and check_password_hash(DEMO_USER["password_hash"], password)
-            ):
+            email_matches = email == DEMO_USER["email"].casefold()
+            password_matches = check_password_hash(
+                DEMO_USER["password_hash"], password
+            )
+            if email_matches and password_matches:
                 session.clear()
                 session["user_id"] = DEMO_USER["id"]
                 flash("Sesión de demostración iniciada correctamente.", "success")
@@ -232,6 +239,8 @@ def create_app(test_config=None):
     @app.get("/pedidos/<order_id>")
     @login_required
     def order_detail(order_id):
+        if not is_valid_order_id(order_id):
+            return render_template("404.html"), 404
         order = get_order_for_user(
             order_id, g.user["id"], session.get("orders", [])
         )
