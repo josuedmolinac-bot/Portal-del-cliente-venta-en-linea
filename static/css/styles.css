@@ -13,6 +13,8 @@ a { color: inherit; text-underline-offset: 3px; }
 nav { display: flex; align-items: center; gap: 4px; }
 nav a, nav span { padding: 11px 12px; }
 nav span { color: #afbfca; cursor: not-allowed; }
+.nav-form { margin: 0; }
+.nav-form button { padding: 11px 12px; border: 0; color: white; background: transparent; font: inherit; text-decoration: underline; cursor: pointer; }
 .hero { padding: 58px 0; border-bottom: 1px solid #d4dde3; background: #eaf0f4; }
 .eyebrow { margin: 0 0 7px; color: #245a87; font-size: .8rem; font-weight: 750; letter-spacing: .08em; text-transform: uppercase; }
 h1, h2, h3 { color: #17324d; line-height: 1.2; }
@@ -67,9 +69,38 @@ h3 { margin: 0 0 8px; font-size: 1.05rem; }
 .filter-actions .button--secondary { width: auto; margin-top: 0; }
 .alert { margin: 18px 0; padding: 14px 17px; border-radius: 4px; }
 .alert--error { color: #79232b; border: 1px solid #dca8ad; background: #fbe8ea; }
+.alert--success { color: #155f35; border: 1px solid #9dc5aa; background: #e4f4e9; }
+.flash-stack { padding-top: 14px; }
 .empty-state { padding: 42px; border: 1px solid #d3dde3; border-radius: 7px; background: white; text-align: center; }
+.narrow-page { max-width: 680px; padding-block: 52px 70px; }
+.panel-form { display: grid; gap: 8px; padding: 24px; border: 1px solid #d3dde3; border-radius: 7px; background: white; }
+.panel-form label, .add-form label { font-weight: 700; }
+.panel-form input, .add-form input { min-height: 44px; padding: 9px; border: 1px solid #8e9da8; border-radius: 4px; }
+.panel-form .button { margin-top: 12px; }
+.account-data { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+.account-data div { padding: 16px; border-left: 3px solid #2f729f; background: white; }
+.account-data dt { color: #596873; font-size: .8rem; font-weight: 700; text-transform: uppercase; }
+.account-data dd { margin: 3px 0 0; }
+.account-actions { display: flex; gap: 12px; margin-top: 24px; }
+.account-actions .button--secondary { width: auto; margin-top: 0; }
+.add-form { display: grid; grid-template-columns: 90px 1fr; align-items: end; gap: 9px; margin-top: 22px; }
+.add-form label { grid-column: 1 / -1; }
+.table-wrap { overflow-x: auto; border: 1px solid #d3dde3; border-radius: 6px; background: white; }
+table { width: 100%; border-collapse: collapse; }
+th, td { padding: 14px; border-bottom: 1px solid #dde4e8; text-align: left; vertical-align: middle; }
+th { color: #17324d; background: #eaf0f4; font-size: .88rem; }
+td small { display: block; color: #65737d; }
+.inline-form { display: flex; gap: 6px; }
+.inline-form input { width: 74px; min-height: 38px; padding: 7px; }
+.inline-form button, .link-button { border: 0; color: #174f78; background: transparent; font-weight: 700; text-decoration: underline; cursor: pointer; }
+.cart-total { display: flex; justify-content: flex-end; gap: 28px; padding: 22px; font-size: 1.25rem; }
+.confirm-form { text-align: right; }
+.order-status { display: inline-block; padding: 4px 9px; border-radius: 999px; color: #174f78; background: #e4eef5; font-weight: 700; }
+.tracking { display: grid; grid-template-columns: repeat(4, 1fr); margin: 30px 0; padding: 0; list-style: none; }
+.tracking li { padding: 16px 10px; border-top: 5px solid #cbd5db; color: #64727d; text-align: center; }
+.tracking li.completed { border-color: #28724b; color: #155f35; font-weight: 700; }
 .status-page { margin-block: 60px; padding: 40px; border: 1px solid #d3dde3; background: white; text-align: center; }
 .site-footer { padding: 24px 0; color: #d3dde5; background: #102f49; font-size: .875rem; }
 @media (max-width: 900px) { .header-content { align-items: flex-start; flex-direction: column; padding-block: 14px; } nav { flex-wrap: wrap; } .product-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } .detail-summary { grid-template-columns: 1fr; } .catalog-filters { grid-template-columns: repeat(2, 1fr); } }
-@media (max-width: 640px) { .container { width: min(100% - 28px, 1160px); } nav span { display: none; } .product-grid { grid-template-columns: 1fr; } .section-heading { align-items: flex-start; flex-direction: column; } }
+@media (max-width: 640px) { .container { width: min(100% - 28px, 1160px); } nav span { display: none; } .product-grid { grid-template-columns: 1fr; } .section-heading { align-items: flex-start; flex-direction: column; } .catalog-filters, .account-data { grid-template-columns: 1fr; } .tracking { grid-template-columns: 1fr; } }
 

@@ -14,13 +14,23 @@
       <nav aria-label="Navegación principal">
         <a href="{{ url_for('home') }}">Inicio</a>
         <a href="{{ url_for('products') }}">Productos</a>
-        <span aria-disabled="true">Mis pedidos</span>
-        <span aria-disabled="true">Mi cuenta</span>
-        <span aria-disabled="true">Iniciar sesión</span>
+        {% if current_user %}
+          <a href="{{ url_for('orders') }}">Mis pedidos</a>
+          <a href="{{ url_for('cart') }}">Carrito{% if cart_count %} ({{ cart_count }}){% endif %}</a>
+          <a href="{{ url_for('account') }}">Mi cuenta</a>
+          <form class="nav-form" action="{{ url_for('logout') }}" method="post"><input type="hidden" name="csrf_token" value="{{ csrf_token() }}"><button type="submit">Cerrar sesión</button></form>
+        {% else %}
+          <a href="{{ url_for('login') }}">Iniciar sesión</a>
+        {% endif %}
       </nav>
     </div>
   </header>
-  <main id="contenido">{% block content %}{% endblock %}</main>
+  <main id="contenido">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}<div class="container flash-stack" aria-live="polite">{% for category, message in messages %}<div class="alert alert--{{ category }}">{{ message }}</div>{% endfor %}</div>{% endif %}
+    {% endwith %}
+    {% block content %}{% endblock %}
+  </main>
   <footer class="site-footer">
     <div class="container">Seguridad LTDA · Datos demostrativos sin conexión a inventario real</div>
   </footer>
