@@ -70,7 +70,7 @@ def create_app(test_config=None):
             quantity for quantity in session.get("cart", {}).values()
             if isinstance(quantity, int)
         )
-        return {"current_user": g.user, "cart_count": cart_count}
+        return {"current_user": getattr(g, "user", None), "cart_count": cart_count}
 
     @app.after_request
     def add_security_headers(response):
