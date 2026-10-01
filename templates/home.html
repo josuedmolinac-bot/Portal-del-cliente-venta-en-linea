@@ -9,9 +9,10 @@
     <form class="home-search" action="{{ url_for('products') }}" method="get">
       <label for="home-query">Buscar en el catálogo</label>
       <div>
-        <input id="home-query" name="q" type="search" disabled placeholder="Disponible en la próxima fase">
-        <button disabled>Buscar</button>
+        <input id="home-query" name="q" type="search" list="home-suggestions" maxlength="100" placeholder="Nombre o código del producto">
+        <button type="submit">Buscar</button>
       </div>
+      <datalist id="home-suggestions">{% for suggestion in suggestions %}<option value="{{ suggestion }}">{% endfor %}</datalist>
     </form>
     <a class="button" href="{{ url_for('products') }}">Consultar catálogo</a>
   </div>

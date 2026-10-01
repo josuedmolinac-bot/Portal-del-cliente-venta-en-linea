@@ -57,9 +57,18 @@ h3 { margin: 0 0 8px; font-size: 1.05rem; }
 .home-search label { display: block; margin-bottom: 7px; font-weight: 700; }
 .home-search div { display: flex; }
 .home-search input { flex: 1; min-height: 44px; padding: 10px; border: 1px solid #91a0ac; }
-.home-search button { min-height: 44px; padding: 10px 18px; border: 0; color: #697781; background: #d7dde1; }
+.home-search button { min-height: 44px; padding: 10px 18px; border: 0; color: white; background: #245a87; font-weight: 700; cursor: pointer; }
+.catalog-filters { display: grid; grid-template-columns: repeat(5, minmax(130px, 1fr)); gap: 14px; margin: 26px 0; padding: 20px; border: 1px solid #d3dde3; border-radius: 7px; background: white; }
+.catalog-filters label { display: block; margin-bottom: 6px; font-size: .88rem; font-weight: 700; }
+.catalog-filters input, .catalog-filters select { width: 100%; min-height: 44px; padding: 9px; border: 1px solid #8e9da8; border-radius: 4px; color: #1d2935; background: white; }
+.search-field { grid-column: 1 / -1; }
+.filter-actions { display: flex; grid-column: 1 / -1; align-items: center; gap: 12px; }
+.filter-actions .button--secondary { width: auto; margin-top: 0; }
+.alert { margin: 18px 0; padding: 14px 17px; border-radius: 4px; }
+.alert--error { color: #79232b; border: 1px solid #dca8ad; background: #fbe8ea; }
+.empty-state { padding: 42px; border: 1px solid #d3dde3; border-radius: 7px; background: white; text-align: center; }
 .status-page { margin-block: 60px; padding: 40px; border: 1px solid #d3dde3; background: white; text-align: center; }
 .site-footer { padding: 24px 0; color: #d3dde5; background: #102f49; font-size: .875rem; }
-@media (max-width: 900px) { .header-content { align-items: flex-start; flex-direction: column; padding-block: 14px; } nav { flex-wrap: wrap; } .product-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } .detail-summary { grid-template-columns: 1fr; } }
+@media (max-width: 900px) { .header-content { align-items: flex-start; flex-direction: column; padding-block: 14px; } nav { flex-wrap: wrap; } .product-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } .detail-summary { grid-template-columns: 1fr; } .catalog-filters { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 640px) { .container { width: min(100% - 28px, 1160px); } nav span { display: none; } .product-grid { grid-template-columns: 1fr; } .section-heading { align-items: flex-start; flex-direction: column; } }
 
