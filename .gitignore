@@ -1,17 +1,24 @@
-# Dependencias
-node_modules/
+# Entorno virtual y caché de Python
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.coverage
+htmlcov/
 
-# Compilación
-dist/
-
-# Variables de entorno locales
+# Configuración local y secretos
 .env
 .env.*
 !.env.example
 
+# Datos y archivos generados
+db.sqlite3
+media/
+staticfiles/
+
 # Registros
 *.log
-npm-debug.log*
 
 # Editores y sistema operativo
 .vscode/

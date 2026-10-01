@@ -1,0 +1,28 @@
+{% load static %}
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Portal del Cliente de Seguridad LTDA">
+    <title>{% block title %}Portal del Cliente{% endblock %} | Seguridad LTDA</title>
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+  </head>
+  <body>
+    <a class="skip-link" href="#contenido">Saltar al contenido</a>
+    <header class="site-header">
+      <div class="container header-content">
+        <a class="brand" href="{% url 'portal:inicio' %}" aria-label="Seguridad LTDA, ir al inicio">
+          Seguridad LTDA<span>Portal del Cliente</span>
+        </a>
+        <nav aria-label="Navegación principal">
+          <a href="{% url 'portal:inicio' %}" aria-current="page">Inicio</a>
+        </nav>
+      </div>
+    </header>
+    <main id="contenido" tabindex="-1">{% block content %}{% endblock %}</main>
+    <footer class="site-footer">
+      <div class="container">Seguridad LTDA · Portal del Cliente</div>
+    </footer>
+  </body>
+</html>
