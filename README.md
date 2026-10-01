@@ -1,53 +1,27 @@
 # Portal del Cliente – Ventas en línea
 
-Base inicial del módulo **Portal del Cliente – Ventas en línea** del ERP de Seguridad LTDA.
+Prototipo académico de Seguridad LTDA desarrollado con Python, Flask, Jinja2, HTML y CSS. Usa datos locales controlados, sin base de datos, Django ni API externa.
 
-Este repositorio se utiliza como evidencia académica de la asignatura Desarrollo Seguro (DevSecOps). Las funcionalidades se desarrollarán de manera incremental mediante ramas, Pull Requests y revisión de pares.
+## Instalación y ejecución en Windows
 
-## Tecnología
-
-- React
-- Vite
-- JavaScript
-- CSS
-
-## Requisitos
-
-- Node.js 20 o superior
-- npm 10 o superior
-
-## Instalación y ejecución
-
-```bash
-npm install
-npm run dev
+```powershell
+python -m venv .venv
+.venv\Scripts\activate
+pip install -r requirements.txt
+python app.py
 ```
 
-Vite mostrará en la terminal la dirección local del proyecto.
+Abrir `http://127.0.0.1:5000`.
 
-## Compilación
+## Pruebas
 
-```bash
-npm run build
+```powershell
+pytest
 ```
 
-El resultado se genera en `dist/`.
+## Alcance
 
-## Estructura inicial
+`feature/catalogo` contiene la estructura Flask, datos simulados, catálogo, detalle, categorías, marcas, multimedia y documentos locales. Búsqueda, cuenta y pedidos se incorporarán en sus fases Jira correspondientes. PDCVEL-19 queda documentada como mejora futura; solo se incluyen ajustes responsivos básicos.
 
-```text
-src/
-  components/  Componentes reutilizables
-  pages/       Vistas principales
-  services/    Acceso futuro a API y datos
-  data/        Datos temporales de desarrollo
-  models/      Modelos y contratos
-  utils/       Funciones auxiliares
-  styles/      Estilos globales
-```
+Los datos son demostrativos. Una solución productiva requeriría persistencia y validación autorizada de precios, inventario, usuarios y pedidos.
 
-## Flujo de trabajo
-
-La rama `main` contiene versiones revisadas y estables. El desarrollo funcional se realizará en ramas `feature/*` y se integrará mediante Pull Requests con revisión y aprobación.
-
-No se deben almacenar contraseñas, tokens, claves privadas ni archivos `.env` dentro del repositorio.
