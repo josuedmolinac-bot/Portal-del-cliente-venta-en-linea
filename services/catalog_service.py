@@ -1,6 +1,7 @@
 from copy import deepcopy
 
 from data.products import PRODUCTS
+from utils.validators import is_positive_integer
 
 
 def get_availability(stock):
@@ -24,7 +25,7 @@ def get_products():
 
 
 def get_product_by_id(product_id):
-    if not isinstance(product_id, int) or isinstance(product_id, bool) or product_id < 1:
+    if not is_positive_integer(product_id):
         return None
     product = next((item for item in PRODUCTS if item["id"] == product_id), None)
     return _prepare_product(product) if product else None
@@ -40,4 +41,3 @@ def get_categories():
 
 def get_brands():
     return sorted({product["brand"] for product in PRODUCTS})
-

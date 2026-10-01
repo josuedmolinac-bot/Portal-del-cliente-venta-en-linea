@@ -22,6 +22,17 @@ def create_app(test_config=None):
 
     app.jinja_env.filters["clp"] = format_clp
 
+    @app.after_request
+    def add_security_headers(response):
+        response.headers["X-Content-Type-Options"] = "nosniff"
+        response.headers["X-Frame-Options"] = "SAMEORIGIN"
+        response.headers["Referrer-Policy"] = "strict-origin-when-cross-origin"
+        response.headers["Content-Security-Policy"] = (
+            "default-src 'self'; img-src 'self'; style-src 'self'; "
+            "script-src 'none'; frame-ancestors 'self'"
+        )
+        return response
+
     @app.get("/")
     def home():
         return render_template("home.html", products=get_featured_products())
@@ -57,4 +68,3 @@ app = create_app()
 
 if __name__ == "__main__":
     app.run(debug=os.environ.get("FLASK_DEBUG") == "1")
-
